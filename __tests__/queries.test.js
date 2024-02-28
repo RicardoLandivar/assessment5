@@ -1,29 +1,30 @@
 import * as solution from '../src/queries.js';
 import db from '../src/model.js';
 
+
 describe('Testing queries.js', () => {
   afterAll(async () => {
     await db.close();
   });
 
   test('query1', async () => {
-    const result = await solution.query1;
-    expect(result.humanId).toBe(2);
+    const result = await solution.query1();
+    expect(result.human_id).toBe(2);
     expect(result.fname).toBe('Jane');
     expect(result.lname).toBe('Doe');
     expect(result.email).toBe('jdoe@gmail.com');
   });
 
   test('query2', async () => {
-    const result = await solution.query2;
-    expect(result.animalId).toBe(5);
-    expect(result.humanId).toBe(4);
+    const result = await solution.query2();
+    expect(result.animal_id).toBe(5);
+    expect(result.human_id).toBe(4);
     expect(result.name).toBe('Bubbles');
-    expect(result.birthYear).toBe(null);
+    expect(result.birth_year).toBe(null);
   });
 
   test('query3', async () => {
-    const result = await solution.query3;
+    const result = await solution.query3();
     expect(result.length).toBe(3);
     let names = result.map((animal) => animal.name);
     names.sort();
@@ -31,15 +32,15 @@ describe('Testing queries.js', () => {
   });
 
   test('query4', async () => {
-    const result = await solution.query4;
+    const result = await solution.query4();
     expect(result.length).toBe(4);
-    let birthYears = result.map((animal) => animal.birthYear);
+    let birthYears = result.map((animal) => animal.birth_year);
     birthYears.sort();
     expect(birthYears).toEqual([2016, 2016, 2017, 2019]);
   });
 
   test('query5', async () => {
-    const result = await solution.query5;
+    const result = await solution.query5();
     expect(result.length).toBe(4);
     let fullNames = result.map((human) => `${human.fname} ${human.lname}`);
     fullNames.sort();
@@ -47,15 +48,15 @@ describe('Testing queries.js', () => {
   });
 
   test('query6', async () => {
-    const result = await solution.query6;
+    const result = await solution.query6();
     expect(result.length).toBe(3);
     for (const animal of result) {
-      expect(animal.birthYear).toBe(null);
+      expect(animal.birth_year).toBe(null);
     }
   });
 
   test('query7', async () => {
-    const result = await solution.query7;
+    const result = await solution.query7();
     expect(result.length).toBe(3);
     for (const animal of result) {
       expect(['fish', 'rabbit']).toContain(animal.species);
@@ -63,7 +64,7 @@ describe('Testing queries.js', () => {
   });
 
   test('query8', async () => {
-    const result = await solution.query8;
+    const result = await solution.query8();
     expect(result.length).toBe(2);
     let emails = result.map((human) => human.email);
     emails.sort();
